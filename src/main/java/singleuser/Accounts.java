@@ -1,4 +1,4 @@
-package sessionTwo;
+package singleuser;
 
 public class Accounts {
 	private int accountNumber;

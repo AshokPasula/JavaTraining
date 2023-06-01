@@ -1,4 +1,4 @@
-package sessionTwo;
+package singleuser;
 
 import java.util.Scanner;
 
@@ -7,7 +7,6 @@ public class PublicBank {
 	  public static void main(String[] args) {
 		  BankOperation bank = new BankOperation();
 	        Scanner scanner = new Scanner(System.in);
-	        
 	        int choice;
 
 	        do {

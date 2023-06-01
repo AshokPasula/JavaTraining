@@ -1,4 +1,4 @@
-package sessionTwo;
+package singleuser;
 
 import java.util.Scanner;
 
@@ -8,8 +8,6 @@ public class BankOperation {
 	private double balance;
 	private double[] transactions;
 	private int transactionCount;
-	private String accHolderName;  
-	private String accountType;
 	int choice;
 	
 	Accounts ac;
@@ -24,10 +22,6 @@ public class BankOperation {
 	
 	public void createAccount() {
 		System.out.println("Proceeds with below steps to create account");
-		System.out.print("Enter your Full Name: ");
-		accHolderName=sc.nextLine();
-		System.out.print("Please select Account type: ");
-		accountType=sc.next();
 		System.out.print("Enter Account Number: ");
 		accountNumber=sc.nextInt();
 		System.out.print("Set pin to your account: ");
@@ -137,9 +131,7 @@ public class BankOperation {
 	}
 	
 	 public void showAccount() {  
-	        System.out.println("Name of account holder: " +accHolderName );  
-	        System.out.println("Account no.: " + ac.getAccNumber());  
-	        System.out.println("Account type: " + accountType);  
+	        System.out.println("Account no.: " + ac.getAccNumber());   
 	        System.out.println("Balance: " + ac.getbalance());  
 	    } 
 }
