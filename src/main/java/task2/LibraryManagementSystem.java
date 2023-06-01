@@ -68,7 +68,7 @@ public class LibraryManagementSystem {
         authors[bookCount] = author;
         bookCount++;
 
-        System.out.println("Book added successfully!");
+        System.out.println("Book added successfully!\n");
     }
 
     public static void addPatron(Scanner scanner) {
@@ -80,7 +80,6 @@ public class LibraryManagementSystem {
         System.out.print("Enter the patron name: ");
         scanner.nextLine();
         String patronName = scanner.nextLine();
-
         patrons[patronCount] = patronName;
         patronCount++;
 
@@ -110,7 +109,8 @@ public class LibraryManagementSystem {
     }
 
     public static void borrowBook(Scanner scanner) {
-        System.out.print("Enter the patron name: ");
+        System.out.println("Enter the patron name: ");
+        scanner.nextLine();
         String patronName = scanner.nextLine();
 
         int patronIndex = findPatronIndex(patronName);
@@ -148,6 +148,7 @@ public class LibraryManagementSystem {
 
     public static void returnBook(Scanner scanner) {
         System.out.print("Enter the patron name: ");
+        scanner.nextLine();
         String patronName = scanner.nextLine();
 
         int patronIndex = findPatronIndex(patronName);
