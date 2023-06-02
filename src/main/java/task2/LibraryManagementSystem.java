@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class LibraryManagementSystem {
 
+
 	private static final int MAX_BOOKS = 10;
     private static final int MAX_PATRONS = 10;
 
@@ -14,9 +15,9 @@ public class LibraryManagementSystem {
 
     private static int bookCount = 0;
     private static int patronCount = 0;
-
+    private static   Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+      
 
         boolean exit = false;
 
@@ -32,16 +33,16 @@ public class LibraryManagementSystem {
 
             switch (choice) {
                 case 1:
-                    addBook(scanner);
+                    addBook();
                     break;
                 case 2:
-                    addPatron(scanner);
+                    addPatron();
                     break;
                 case 3:
-                    borrowBook(scanner);
+                    borrowBook();
                     break;
                 case 4:
-                    returnBook(scanner);
+                    returnBook();
                     break;
                 case 5:
                     exit = true;
@@ -52,14 +53,15 @@ public class LibraryManagementSystem {
         }
     }
 
-    public static void addBook(Scanner scanner) {
+    public static void addBook() {
+    	scanner.nextLine();
         if (bookCount >= MAX_BOOKS) {
             System.out.println("Cannot add more books. Maximum limit reached.");
             return;
         }
 
         System.out.print("Enter the book title: ");
-        scanner.nextLine();
+        
         String title = scanner.nextLine();
         System.out.print("Enter the author: ");
         String author = scanner.nextLine();
@@ -71,7 +73,7 @@ public class LibraryManagementSystem {
         System.out.println("Book added successfully!\n");
     }
 
-    public static void addPatron(Scanner scanner) {
+    public static void addPatron() {
         if (patronCount >= MAX_PATRONS) {
             System.out.println("Cannot add more patrons. Maximum limit reached.");
             return;
@@ -108,7 +110,7 @@ public class LibraryManagementSystem {
         return -1;
     }
 
-    public static void borrowBook(Scanner scanner) {
+    public static void borrowBook() {
         System.out.println("Enter the patron name: ");
         scanner.nextLine();
         String patronName = scanner.nextLine();
@@ -146,7 +148,7 @@ public class LibraryManagementSystem {
         System.out.println("Book borrowed successfully!");
     }
 
-    public static void returnBook(Scanner scanner) {
+    public static void returnBook() {
         System.out.print("Enter the patron name: ");
         scanner.nextLine();
         String patronName = scanner.nextLine();
@@ -170,7 +172,7 @@ public class LibraryManagementSystem {
 
         if (bookIndex == -1) {
             System.out.println("Book not found.");
-            return;
+            return;	
         }
 
         books[bookIndex] = bookTitle;
