@@ -33,11 +33,6 @@
 			<artifactId>selenium-java</artifactId>
 			<version>${selenium-version}</version>
 		</dependency>
-		<dependency>
-			<groupId>DataBaseTesting</groupId>
-			<artifactId>DataBaseTesting</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
 	</dependencies>
 
   <build>

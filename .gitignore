@@ -44,6 +44,8 @@ nb-configuration.xml
 out
 src/generated
 *target
+*target/
+*/target
 *test-output
 *test-output-tests
 testng.xml
@@ -52,4 +54,4 @@ z_build
 outputDir/
 **/Version.java
 **/bin/
-.xml
+*.xml

@@ -14,10 +14,12 @@ public class RentalService implements RentalCostCalculator {
 	        this.rentals = new ArrayList<>();
 	    }
 
+	    // adding the vehicle to vehicles arrayList
 	    public void addVehicle(Vehicle vehicle) {
 	        vehicles.add(vehicle);
 	    }
 
+	 // adding the all vehicle to availableVehicles arrayList
 	    public List<Vehicle> getAvailableVehicles() {
 	        List<Vehicle> availableVehicles = new ArrayList<>();
 	        for (Vehicle vehicle : vehicles) {
@@ -28,6 +30,7 @@ public class RentalService implements RentalCostCalculator {
 	        return availableVehicles;
 	    }
 
+	 // adding the rented vehicle to rentals arrayList	    
 	    public Rental rentVehicle(Customer customer, Vehicle vehicle, LocalDateTime startTime, LocalDateTime endTime) {
 	        if (!vehicle.isAvailable()) {
 	        	System.out.println();
@@ -39,6 +42,7 @@ public class RentalService implements RentalCostCalculator {
 	        return rental;
 	    }
 
+	    // calculating hourly rental cost for vehicle
 	    @Override
 	    public BigDecimal calculateRentalCost(Rental rental) {
 	        // Implementation of rental cost calculation based on duration
@@ -48,6 +52,7 @@ public class RentalService implements RentalCostCalculator {
 	        return hourlyRate.multiply(BigDecimal.valueOf(durationInHours));
 	    }
 
+	    
 	    public boolean returnVehicle(Rental rental) {
 	        if (!rentals.contains(rental)) {
 	            return false; // Rental not found
