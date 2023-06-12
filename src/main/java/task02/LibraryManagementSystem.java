@@ -1,4 +1,4 @@
-package task2;
+package task02;
 
 import java.util.Scanner;
 
@@ -16,9 +16,9 @@ public class LibraryManagementSystem {
     private static int bookCount = 0;
     private static int patronCount = 0;
     private static   Scanner scanner = new Scanner(System.in);
+    
     public static void main(String[] args) {
       
-
         boolean exit = false;
 
         while (!exit) {
@@ -54,17 +54,17 @@ public class LibraryManagementSystem {
     }
 
     public static void addBook() {
-    	scanner.nextLine();
+    	Scanner sc = new Scanner(System.in);
         if (bookCount >= MAX_BOOKS) {
             System.out.println("Cannot add more books. Maximum limit reached.");
             return;
         }
 
         System.out.print("Enter the book title: ");
-        
-        String title = scanner.nextLine();
+        String input=sc.nextLine();
+        String title = input;
         System.out.print("Enter the author: ");
-        String author = scanner.nextLine();
+        String author = sc.nextLine();
 
         books[bookCount] = title;
         authors[bookCount] = author;
@@ -85,7 +85,8 @@ public class LibraryManagementSystem {
         patrons[patronCount] = patronName;
         patronCount++;
 
-        System.out.println("Patron added successfully!");
+        System.out.println("Patron added successfully!\n");
+        
     }
     
     public static int findBookIndex(String bookTitle) {
@@ -111,7 +112,7 @@ public class LibraryManagementSystem {
     }
 
     public static void borrowBook() {
-        System.out.println("Enter the patron name: ");
+        System.out.print("Enter the patron name: ");
         scanner.nextLine();
         String patronName = scanner.nextLine();
 
@@ -123,7 +124,7 @@ public class LibraryManagementSystem {
         }
 
         if (borrowedBooks[patronIndex] != null) {
-            System.out.println("Patron already borrowed a book.");
+            System.out.println("Patron already borrowed a book.\n");
             return;
         }
 
@@ -138,14 +139,14 @@ public class LibraryManagementSystem {
         }
 
         if (books[bookIndex] == null) {
-            System.out.println("Book is not available for borrowing.");
+            System.out.println("Book is not available for borrowing.\n");
             return;
         }
 
         books[bookIndex] = null;
         borrowedBooks[patronIndex] = bookTitle;
 
-        System.out.println("Book borrowed successfully!");
+        System.out.println("Book borrowed successfully!\n");
     }
 
     public static void returnBook() {
@@ -161,7 +162,7 @@ public class LibraryManagementSystem {
         }
 
         if (borrowedBooks[patronIndex] == null) {
-            System.out.println("Patron has not borrowed any book.");
+            System.out.println("Patron has not borrowed any book.\n");
             return;
         }
 

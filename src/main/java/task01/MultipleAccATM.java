@@ -9,8 +9,7 @@ public class MultipleAccATM {
 	private static int[] accNum = new int[MAX_COUNT];
 	private static int[] pin = new int[MAX_COUNT];
 	private static double[] blances = new double[MAX_COUNT];
-	private static double[] depositeBlances = new double[MAX_COUNT];
-	private static double[] transactions = new double[MAX_COUNT];
+	private static double[][] transactions = new double[MAX_COUNT][MAX_COUNT];
 	private static int transactionCount = 0;
 	private static int bankAccCount = 0;
 	
@@ -63,9 +62,10 @@ public class MultipleAccATM {
 		accNum[bankAccCount] = accNumber;
 		pin[bankAccCount] = accPin;
 		blances[bankAccCount] = bal;
-		transactions[transactionCount] = bal;
+		transactions[bankAccCount][transactionCount] = bal;
 		bankAccCount++;
 		transactionCount++;
+		
 	}
 
 	public static int findPinNum(int accPinNum) {
@@ -105,11 +105,11 @@ public class MultipleAccATM {
 	}
 	
 	public static void checkAvaliableBal(int accNumber) {
-		System.out.println("Avalable blances :$"+checkAccBal(accNumber));
+		System.out.println("\nAvalable blances :$"+checkAccBal(accNumber));
 	}
 
 	public static void login(Scanner scanner) {
-		System.out.print("Enter the account number: ");
+		System.out.print("\nEnter the account number: ");
 		int accountNumber = scanner.nextInt();
 		if (accountNumber == findAccNum(accountNumber)) {
 			System.out.print("Enter the pin number: ");
@@ -159,13 +159,12 @@ public class MultipleAccATM {
 
 	public static void deposit(int accountNum, Scanner scanner) {
 		int indexNumber = findAccIndex(accountNum);
-		System.out.println(indexNumber);
-		System.out.print("Enter deposit amount:$ ");
+		System.out.print("\nEnter deposit amount:$ ");
 		double amount = scanner.nextDouble();
             if(checkAccBal(accountNum)> 0) {
             	double depositAmount = checkAccBal(accountNum) + amount;
             	blances[indexNumber] = depositAmount;
-			    transactions[transactionCount++] = amount;
+			    transactions[indexNumber][transactionCount++] = amount;
 			    System.out.println("Deposit successful!");
             }
 		    else {
@@ -173,22 +172,9 @@ public class MultipleAccATM {
 		}
 	}
 
-	public static void showTransactionHistory(int accountNum) {
-		System.out.println("Transaction History:");
-		if(accountNum == findAccNum(accountNum)) {
-			for (int i = 0; i < transactionCount; i++) {
-				if (transactions[i] > 0) {
-					System.out.println("Deposit: $" + transactions[i]);
-				} else {
-					System.out.println("Withdraw: $" + (-transactions[i]));
-				}
-			}
-		}
-	}
-
 	public static void withdraw(int accountNum, Scanner scanner) {
 		int indexNumber = findAccIndex(accountNum);
-		System.out.print("Enter withdraw amount: $");
+		System.out.print("\nEnter withdraw amount: $");
 		double amount = scanner.nextDouble();
 		if (amount > checkAccBal(accountNum)) {
 			System.out.println("Insufficient balance.");
@@ -196,11 +182,23 @@ public class MultipleAccATM {
 			System.out.println("Invalid withdrawal amount.");
 		} else {
 			double withdrawAmount = checkAccBal(accountNum) - amount;
-			
         	blances[indexNumber] = withdrawAmount;
-			transactions[transactionCount++] = -amount;
+			transactions[indexNumber][transactionCount++] = -amount;
 			System.out.println("withdraw successful!");
 		}
 	}
-
+	public static void showTransactionHistory(int accountNum) {
+		System.out.println("\nTransaction History:");
+		int indexNumber = findAccIndex(accountNum);
+			for (int i = 0; i < transactionCount; i++) {
+				if(transactions[indexNumber][i]==0.0 || transactions[indexNumber][i]==-0.0) {
+					continue;
+				}
+				else if (transactions[indexNumber][i] > 0) {
+					System.out.println("Deposit: $" + transactions[indexNumber][i]);
+				} else {
+					System.out.println("Withdraw: $" + (-transactions[indexNumber][i]));
+				}
+			}
+		}
 }
