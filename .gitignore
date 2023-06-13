@@ -25,6 +25,7 @@ replay_pid*
 
 .ant-targets*
 .classpath
+*.classpath
 .gradle
 .idea
 *.ipr
@@ -46,6 +47,9 @@ src/generated
 *target
 *target/
 */target
+*target*
+/target
+target/
 *test-output
 *test-output-tests
 testng.xml

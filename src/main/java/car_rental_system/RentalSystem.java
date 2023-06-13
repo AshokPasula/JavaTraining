@@ -32,33 +32,21 @@ public class RentalSystem {
 				System.out.println("\nEnter vehicle data");
 				System.out.print("Please enter vechile type: ");
 				String vehicleType = scanner.next();
+				System.out.print("Enter vechile number: ");
+				String numberPlate = scanner.next();
+				System.out.print("Enter vechile Make: ");
+				String carBrand = scanner.next();
+				System.out.print("Enter vechile Model: ");
+				String carModel = scanner.next();
 				if (carType.equalsIgnoreCase(vehicleType)) {
-					System.out.print("Enter vechile number: ");
-					String numberPlate = scanner.next();
-					System.out.print("Enter vechile Make: ");
-					String carBrand = scanner.next();
-					System.out.print("Enter vechile Model: ");
-					String carModel = scanner.next();
 					Car car = new Car(numberPlate, carBrand, carModel);
 					rentalService.addVehicle(car);
 					System.out.println("Vechile Added sucessfully\n");
 				} else if (motorCycleType.equalsIgnoreCase(vehicleType)) {
-					System.out.print("Enter vechile number: ");
-					String numberPlate = scanner.next();
-					System.out.print("Enter vechile Make: ");
-					String carBrand = scanner.next();
-					System.out.print("Enter vechile Model: ");
-					String carModel = scanner.next();
 					Motorcycle motorCycle = new Motorcycle(numberPlate, carBrand, carModel);
 					rentalService.addVehicle(motorCycle);
 					System.out.println("Vechile Added sucessfully\n");
 				} else if (bicycleType.equalsIgnoreCase(vehicleType)) {
-					System.out.print("Enter vechile number: ");
-					String numberPlate = scanner.next();
-					System.out.print("Enter vechile Make: ");
-					String carBrand = scanner.next();
-					System.out.print("Enter vechile Model: ");
-					String carModel = scanner.next();
 					Bicycle bicycle = new Bicycle(numberPlate, carBrand, carModel);
 					rentalService.addVehicle(bicycle);
 					System.out.println("Vechile Added sucessfully\n");
@@ -79,8 +67,8 @@ public class RentalSystem {
 			case 3:
 				System.out.println("\nSelect the car which are available for Rent: ");
 				String selectedCar = scanner.next();
-				if (selectCar(selectedCar) != null) {
-					Vehicle car = (Vehicle) selectCar(selectedCar);
+				if (selectVehicle(selectedCar) != null) {
+					Vehicle car = (Vehicle) selectVehicle(selectedCar);
 					System.out.println("Create a customer for Rent a car");
 					System.out.print("\nEnter customer first name: ");
 					String fristName = scanner.next();
@@ -121,16 +109,17 @@ public class RentalSystem {
 				break;
 			case 6:
 				exit = true;
+				System.out.println("Thanks for Choosing My Rental Cars and Visit again");
 				break;
 			default:
-				System.out.println("Thanks for Choosing My Rental Cars and Visit again");
+				System.out.println("Choose the appropriate one\n");
 			}
 
 		}
 		scanner.close();
 	}
 
-	public static Vehicle selectCar(String carName) {
+	public static Vehicle selectVehicle(String carName) {
 		List<Vehicle> availableVehicles = rentalService.getAvailableVehicles();
 		for (Vehicle vehicle : availableVehicles) {
 			if (vehicle.getMake().equalsIgnoreCase(carName)) {
